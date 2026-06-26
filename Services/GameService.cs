@@ -61,7 +61,7 @@ public class GameService : IGameService
         return new LoginResponse { Token = token };
     }
 
-    public async Task<StartGameResponse> StartGameAsync(int playerId)
+    public async Task<StartGameResponse> StartGameAsync(Guid playerId)
     {
         _logger.LogInformation("Iniciando juego para jugador ID: {PlayerId}", playerId);
 
@@ -82,6 +82,7 @@ public class GameService : IGameService
 
         _logger.LogInformation("Juego {GameId} iniciado.", game.Id);
         return new StartGameResponse { GameId = game.Id, PlayerId = game.PlayerId, CreatedAt = game.CreatedAt };
+
     }
 
     public async Task<GuessNumberResponse> GuessNumberAsync(GuessNumberRequest request)

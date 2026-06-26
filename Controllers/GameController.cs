@@ -77,8 +77,7 @@ public class GameController : ControllerBase
             var playerIdClaim = User.FindFirst("playerId")?.Value;
             if (playerIdClaim == null)
                 return Unauthorized(new { message = "Token inválido." });
-
-            var playerId = int.Parse(playerIdClaim);
+            var playerId = Guid.Parse(playerIdClaim);
             var result = await _gameService.StartGameAsync(playerId);
             return Ok(result);
         }
